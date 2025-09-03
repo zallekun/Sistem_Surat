@@ -1,0 +1,90 @@
+Baik, mari saya rangkum alur aplikasi sistem surat-menyurat fakultas yang sedang kita bangun:
+
+## **ALUR APLIKASI FINAL (Fixed Version)**
+
+### **1. TAHAP INISIASI**
+**Admin Prodi:**
+- Login ke sistem dengan role `admin_prodi`
+- Mengisi form surat (nomor otomatis, perihal, tanggal, kategori, prioritas, tujuan)
+- Upload file PDF/scan surat yang sudah ditandatangani
+- Status: `DRAFT` → `SUBMITTED`
+
+### **2. TAHAP REVIEW ADMINISTRATIF**
+**Staff Umum Fakultas:**
+- Menerima surat dengan status `SUBMITTED` → `UNDER_REVIEW`
+- Review kelengkapan administrasi dan format
+- **Decision:**
+  - **APPROVE** → Status: `APPROVED_L1` → ke Kabag TU
+  - **REJECT** → Status: `REJECTED` → kembali ke Prodi
+  - **REVISI** → Status: `NEED_REVISION` → kembali ke Prodi untuk perbaikan
+
+### **3. TAHAP REVISI (Jika diperlukan)**
+**Admin Prodi (jika reject/revisi):**
+- Upload file revisi dengan suffix (nomor_surat_a, _b, dst)
+- File lama tetap tersimpan untuk history
+- Status: `NEED_REVISION` → `SUBMITTED` (ulang ke Staff Umum)
+
+### **4. TAHAP APPROVAL MANAJERIAL**
+**Kabag TU:**
+- Review surat yang sudah `APPROVED_L1`
+- **Decision:**
+  - **APPROVE** → Status: `APPROVED_L2` → ke Dekan
+  - **REJECT** → Status: `REJECTED` → kembali ke Prodi
+
+### **5. TAHAP DISPOSISI EKSEKUTIF**
+**Dekan:**
+- Review surat yang sudah `APPROVED_L2`
+- Buat disposisi otomatis berdasarkan kategori surat
+- Pilih tujuan disposisi sesuai kategori:
+  - `akademik` → WD Akademik
+  - `kemahasiswaan` → WD Kemahasiswaan  
+  - `kepegawaian` → WD Umum
+  - `keuangan` → Kaur Keuangan
+  - `umum` → Kabag TU
+- Status: `APPROVED_L2` → `READY_DISPOSISI` → `IN_PROCESS`
+
+### **6. TAHAP EKSEKUSI**
+**WD/Kaur sesuai kategori:**
+- Terima surat untuk diproses sesuai bidangnya
+- Proses surat (buat surat balasan, tindak lanjuti, dll)
+- Upload hasil/response jika diperlukan
+- Status: `IN_PROCESS` → `COMPLETED`
+
+### **7. SISTEM TRACKING REAL-TIME**
+**Semua stakeholder dapat melihat:**
+- History lengkap perjalanan surat dengan timestamp
+- Status real-time seperti tracking ekspedisi
+- Catatan di setiap tahap approval/reject
+- File versions dan revisi history
+
+## **ROLE & PERMISSIONS YANG SUDAH DITETAPKAN**
+
+**Admin Prodi:** Create, read own, edit draft, delete draft
+**Staff Umum:** Level 1 approval, read assigned letters  
+**Kabag TU:** Level 2 approval, read all letters
+**WD (Akademik/Kemahasiswaan/Umum):** Level 3 approval, read by domain
+**Dekan:** Final approval, read all, audit access
+**Kaur:** Process specific category letters
+**Super Admin:** Full system access
+
+## **FITUR UTAMA YANG SUDAH DIBANGUN**
+
+- **State Machine Workflow:** Transisi status yang terkontrol
+- **Role-Based Access Control:** Permission berbeda per role
+- **File Versioning:** Sistem revisi dengan history
+- **Auto-routing:** Disposisi otomatis berdasarkan kategori
+- **Load Balancing:** Assignment otomatis ke staff yang available
+- **Audit Trail:** Log semua aktivitas dengan detail
+- **Delegation System:** Untuk backup ketika key person tidak ada
+
+## **DATABASE DESIGN**
+
+9 tabel utama sudah dibuat dengan foreign key relationships:
+- `fakultas` → `prodi` → `users` (struktur organisasi)
+- `surat` (dokumen utama) → `lampiran` (files dengan versioning)  
+- `disposisi` (lembar disposisi otomatis)
+- `surat_workflow` (tracking history)
+- `approval` (approval chain)
+- `user_delegations` (sistem delegasi wewenang)
+
+Alur ini sudah dioptimalkan untuk mengurangi bottleneck, memberikan transparency, dan memastikan accountability di setiap tahap proses.
