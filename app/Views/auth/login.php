@@ -6,48 +6,7 @@
     <title><?= $title ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
-    <style>
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-        }
-        .login-card {
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1);
-            border: none;
-            overflow: hidden;
-        }
-        .login-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-        .login-body {
-            padding: 2rem;
-            background: white;
-        }
-        .form-control:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            border-radius: 25px;
-            padding: 10px 30px;
-            font-weight: 600;
-        }
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-        }
-        .input-group-text {
-            background-color: #f8f9ff;
-            border-color: #e3e6f0;
-        }
-    </style>
+    <link rel="stylesheet" href="<?= base_url('assets/css/login.css') ?>">
 </head>
 <body>
     <div class="container">
@@ -56,10 +15,11 @@
                 <div class="card login-card">
                     <div class="login-header">
                         <div class="mb-3">
-                            <i class="bi bi-envelope-paper-fill" style="font-size: 3rem;"></i>
+                            <img src="<?= base_url('assets/images/logos/logo_unjani.png') ?>" alt="Logo UNJANI" class="logo">
                         </div>
                         <h4 class="mb-0">Sistem Surat Menyurat</h4>
-                        <p class="mb-0">Fakultas Universitas</p>
+                        <div class="university-name">Universitas Jenderal Ahmad Yani</div>
+                        <div class="system-name">Fakultas Sains dan Informatika</div>
                     </div>
                     <div class="login-body">
                         <?php if (session()->getFlashdata('error')): ?>
@@ -139,12 +99,17 @@
 
                         <hr class="my-4">
                         
-                        <div class="text-center">
+                        <div class="demo-accounts p-3">
+                            <div class="text-center mb-2">
+                                <small class="text-primary fw-bold">
+                                    <i class="bi bi-info-circle me-1"></i>Demo Accounts
+                                </small>
+                            </div>
                             <small class="text-muted">
-                                <strong>Demo Accounts:</strong><br>
-                                Super Admin: superadmin@universitas.ac.id / admin123<br>
-                                Dekan: dekan@universitas.ac.id / dekan123<br>
-                                Admin Prodi: admin.ti@universitas.ac.id / adminprodi123
+                                <strong>Admin Prodi:</strong> admin.ti@universitas.ac.id / adminprodi123<br>
+                                <strong>Staff Umum:</strong> staff.umum@universitas.ac.id / staffumum123<br>
+                                <strong>Kabag TU:</strong> kabag.tu@universitas.ac.id / kabagtu123<br>
+                                <strong>Dekan:</strong> dekan@universitas.ac.id / dekan123
                             </small>
                         </div>
                     </div>

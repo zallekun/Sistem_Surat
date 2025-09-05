@@ -115,9 +115,25 @@ class AuthController extends Controller
             return redirect()->to('/dashboard');
         }
 
+        // Get user statistics
+        $suratModel = new \App\Models\SuratModel();
+        $workflowModel = new \App\Models\SuratWorkflowModel();
+        
+        $stats = [
+            'total_created' => $suratModel->where('created_by', $userId)->countAllResults(),
+            'total_approved' => $workflowModel->where('action_by', $userId)
+                                              ->whereIn('action_type', ['APPROVE', 'COMPLETE'])
+                                              ->countAllResults()
+        ];
+
+        // Ensure proper field names for the view
+        $user['fakultas_nama'] = $user['nama_fakultas'] ?? null;
+        $user['prodi_nama'] = $user['nama_prodi'] ?? null;
+
         $data = [
             'title' => 'Profile - Sistem Surat Menyurat',
-            'user' => $user
+            'user' => $user,
+            'stats' => $stats
         ];
 
         return view('auth/profile', $data);

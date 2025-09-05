@@ -1,0 +1,262 @@
+/**
+ * Custom styling for SweetAlert2 notifications
+ * Sistem Surat Menyurat UNJANI
+ */
+
+/* SweetAlert2 Custom Styling */
+.swal2-popup {
+    border-radius: 12px !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+.swal2-title {
+    font-size: 1.5rem !important;
+    font-weight: 600 !important;
+    color: #2c3e50 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.swal2-content {
+    font-size: 1rem !important;
+    color: #555 !important;
+    line-height: 1.5 !important;
+}
+
+/* Toast positioning and styling */
+.swal2-toast {
+    border-radius: 8px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+    border-left: 4px solid transparent !important;
+}
+
+.swal2-toast .swal2-icon {
+    margin-right: 10px !important;
+}
+
+/* Success styling */
+.swal2-toast.swal2-show.swal2-success {
+    border-left-color: #28a745 !important;
+}
+
+.swal2-popup.swal2-toast .swal2-success {
+    border-color: #28a745 !important;
+}
+
+.swal2-popup.swal2-toast .swal2-success .swal2-success-ring {
+    border-color: #28a745 !important;
+}
+
+/* Error styling */
+.swal2-toast.swal2-show.swal2-error {
+    border-left-color: #dc3545 !important;
+}
+
+.swal2-popup.swal2-toast .swal2-error {
+    border-color: #dc3545 !important;
+}
+
+/* Warning styling */
+.swal2-toast.swal2-show.swal2-warning {
+    border-left-color: #ffc107 !important;
+}
+
+.swal2-popup.swal2-toast .swal2-warning {
+    border-color: #ffc107 !important;
+}
+
+/* Info styling */
+.swal2-toast.swal2-show.swal2-info {
+    border-left-color: #17a2b8 !important;
+}
+
+.swal2-popup.swal2-toast .swal2-info {
+    border-color: #17a2b8 !important;
+}
+
+/* Question/Confirm styling */
+.swal2-popup.swal2-toast .swal2-question {
+    border-color: #6f42c1 !important;
+}
+
+/* Custom button styling */
+.swal2-confirm {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 10px 20px !important;
+    font-weight: 500 !important;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3) !important;
+    transition: all 0.3s ease !important;
+}
+
+.swal2-confirm:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4) !important;
+}
+
+.swal2-cancel {
+    background: #6c757d !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 10px 20px !important;
+    font-weight: 500 !important;
+    box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3) !important;
+    transition: all 0.3s ease !important;
+}
+
+.swal2-cancel:hover {
+    background: #5a6268 !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Delete confirmation styling */
+.swal-delete .swal2-confirm {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%) !important;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3) !important;
+}
+
+.swal-delete .swal2-confirm:hover {
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4) !important;
+}
+
+/* Wide popup for confirmations */
+.swal-wide {
+    width: 500px !important;
+    max-width: 90vw !important;
+}
+
+/* Validation error styling */
+.swal-validation-error {
+    width: 450px !important;
+    max-width: 90vw !important;
+}
+
+.swal-validation-error .swal2-html-container {
+    text-align: left !important;
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+}
+
+/* Progress bar styling */
+.swal2-timer-progress-bar {
+    background: rgba(102, 126, 234, 0.3) !important;
+    height: 3px !important;
+}
+
+/* Loading animation */
+.swal2-loading {
+    border-color: #667eea transparent #667eea transparent !important;
+}
+
+/* Close button */
+.swal2-close {
+    color: #aaa !important;
+    font-size: 24px !important;
+    font-weight: 300 !important;
+    transition: all 0.2s ease !important;
+}
+
+.swal2-close:hover {
+    color: #333 !important;
+    transform: scale(1.1) !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 576px) {
+    .swal2-popup {
+        width: 90vw !important;
+        margin: 0 5vw !important;
+    }
+    
+    .swal2-title {
+        font-size: 1.3rem !important;
+    }
+    
+    .swal2-content {
+        font-size: 0.9rem !important;
+    }
+    
+    .swal2-toast {
+        width: 95vw !important;
+        max-width: 350px !important;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .swal2-popup {
+        background: #2d3748 !important;
+        color: #e2e8f0 !important;
+    }
+    
+    .swal2-title {
+        color: #f7fafc !important;
+    }
+    
+    .swal2-content {
+        color: #cbd5e0 !important;
+    }
+}
+
+/* Animation enhancements */
+.swal2-show {
+    animation: swal2-show 0.3s ease-out !important;
+}
+
+.swal2-hide {
+    animation: swal2-hide 0.15s ease-in !important;
+}
+
+@keyframes swal2-show {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes swal2-hide {
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.9) translateY(-10px);
+    }
+}
+
+/* Toast slide animations */
+.swal2-toast.swal2-show {
+    animation: slideInRight 0.3s ease-out !important;
+}
+
+.swal2-toast.swal2-hide {
+    animation: slideOutRight 0.2s ease-in !important;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translate3d(100%, 0, 0);
+        opacity: 0;
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+    to {
+        transform: translate3d(100%, 0, 0);
+        opacity: 0;
+    }
+}

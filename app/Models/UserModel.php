@@ -141,4 +141,27 @@ class UserModel extends Model
         }
         return false;
     }
+
+    public function getUsersByDivisi($divisiId, $roles = null)
+    {
+        $builder = $this->where('divisi_id', $divisiId)
+                        ->where('is_active', true);
+        
+        if ($roles && is_array($roles)) {
+            $builder->whereIn('role', $roles);
+        }
+        
+        return $builder->findAll();
+    }
+
+    public function getAllActiveUsers($excludeRoles = [])
+    {
+        $builder = $this->where('is_active', true);
+        
+        if (!empty($excludeRoles)) {
+            $builder->whereNotIn('role', $excludeRoles);
+        }
+        
+        return $builder->findAll();
+    }
 }

@@ -20,24 +20,24 @@ class CreateSuratWorkflowTable extends Migration
                 'constraint' => 11,
                 'unsigned'   => true,
             ],
-            'from_state' => [
+            'from_status' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 50,
             ],
-            'to_state' => [
+            'to_status' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 50,
             ],
-            'actor_id' => [
+            'action_by' => [
                 'type'       => 'INT',
                 'constraint' => 11,
                 'unsigned'   => true,
             ],
-            'action' => [
+            'action_type' => [
                 'type'       => 'ENUM',
-                'constraint' => ['submit', 'approve', 'reject', 'forward', 'revise', 'complete', 'cancel'],
+                'constraint' => ['SUBMIT', 'APPROVE', 'REJECT', 'REVISE', 'DISPOSE', 'COMPLETE', 'CANCEL', 'UPDATE'],
             ],
-            'notes' => [
+            'keterangan' => [
                 'type' => 'TEXT',
                 'null' => true,
             ],
@@ -58,7 +58,7 @@ class CreateSuratWorkflowTable extends Migration
         
         $this->forge->addPrimaryKey('id');
         $this->forge->addForeignKey('surat_id', 'surat', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('actor_id', 'users', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('action_by', 'users', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addKey('surat_id');
         $this->forge->addKey('created_at');
         $this->forge->createTable('surat_workflow');
